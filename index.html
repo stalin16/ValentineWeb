@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day My Love ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(196, 69, 105, 0.3);
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: fadeInDown 1s ease;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            font-style: italic;
+            animation: fadeInUp 1s ease 0.3s backwards;
+        }
+
+        /* Landing Page */
+        .landing-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .landing-page h1 {
+            font-size: 3.5em;
+            color: #c44569;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: fadeInDown 1s ease;
+        }
+
+        .landing-page p {
+            font-size: 1.5em;
+            color: #ff6b9d;
+            margin-bottom: 50px;
+            font-style: italic;
+            animation: fadeInUp 1s ease 0.3s backwards;
+        }
+
+        .heart-button {
+            font-size: 120px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: heartbeat 1.5s ease infinite;
+            filter: drop-shadow(0 10px 20px rgba(196, 69, 105, 0.4));
+            -webkit-user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .heart-button:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 15px 30px rgba(196, 69, 105, 0.6));
+        }
+
+        .heart-button:active {
+            transform: scale(0.9);
+        }
+
+        .heart-button.clicked {
+            animation: heartExplode 1s ease forwards;
+        }
+
+        .heart-button.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+            animation: none;
+        }
+
+        .heart-button.locked:hover {
+            transform: none;
+            filter: drop-shadow(0 10px 20px rgba(196, 69, 105, 0.4));
+        }
+
+        .countdown-text {
+            font-size: 1.2em;
+            color: #c44569;
+            margin-top: 30px;
+            font-weight: bold;
+            animation: fadeInUp 1s ease 0.5s backwards;
+        }
+
+        .locked-message {
+            font-size: 1.1em;
+            color: #ff6b9d;
+            margin-top: 20px;
+            font-style: italic;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        @keyframes heartExplode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5) rotate(20deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(3) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .landing-page.fade-out {
+            animation: fadeOutPage 1.5s ease forwards;
+        }
+
+        @keyframes fadeOutPage {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.1);
+            }
+        }
+
+        .main-content.reveal {
+            animation: revealContent 2s ease forwards;
+        }
+
+        @keyframes revealContent {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-10px);
+            }
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            display: none;
+        }
+
+        .main-content.active {
+            display: block;
+        }
+
+        /* Photo Section */
+        .photo-section {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .photo-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .photo-section.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .photo-container {
+            flex: 1;
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* display: none; */
+        }
+
+        .photo-container img.revealed {
+            display: block;
+        }
+
+        .heart-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .heart-sticker {
+            position: absolute;
+            font-size: 80px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease;
+            animation: heartbeat 1.5s ease infinite;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+        }
+
+        .heart-sticker:hover {
+            transform: scale(1.2);
+        }
+
+        .heart-sticker.clicked {
+            animation: heartPop 0.5s ease forwards;
+        }
+
+        .article-content {
+            flex: 1;
+        }
+
+        .article-content h3 {
+            color: #c44569;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .article-content textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            border: 2px solid #ffe0f0;
+            border-radius: 15px;
+            font-family: 'Georgia', serif;
+            font-size: 1.1em;
+            line-height: 1.8;
+            resize: vertical;
+            background: #fff5f9;
+        }
+
+        .article-content textarea:focus {
+            outline: none;
+            border-color: #ff6b9d;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes heartPop {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .photo-section,
+            .photo-section.reverse {
+                flex-direction: column;
+            }
+
+            .heart-sticker {
+                font-size: 50px;
+            }
+
+            .upload-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #c44569;
+            font-style: italic;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Landing Page -->
+        <div id="landingPage" class="landing-page">
+            <h1>Happy Valentine's Day</h1>
+            <div class="heart-button" id="heartButton" onclick="attemptEnter()">❤️</div>
+            <div class="countdown-text" id="countdownText"></div>
+            <div class="locked-message" id="lockedMessage"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent" class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>Happy Valentine's Day My Darling ❤️</h1>
+                <p>Today is our 9-month anniversary and Valentine's Day as well.<b><3</b></p>
+            </div>
+
+            <!-- Photo Section 1 -->
+            <div class="photo-section" id="section1">
+                <div class="photo-container">
+                    <img id="mainPhoto1" src="" class="main-photo" alt="Our Memory 1">
+                    <div class="heart-overlay" id="overlay1"></div>
+                </div>
+                <div class="article-content">
+                    <h3>"I cherish our time together and can't wait to create more memories with you."</h3>
+                    <!-- <textarea placeholder="Write about this special moment..."> moment captures the beginning of something beautiful. Every time I look at this photo, my heart fills with joy remembering how special this day was.</textarea> -->
+                </div>
+            </div>
+
+            <!-- Photo Section 2 -->
+            <div class="photo-section reverse" id="section2">
+                <div class="photo-container">
+                    <img id="mainPhoto2" class="main-photo" alt="Our Memory 2">
+                    <div class="heart-overlay" id="overlay2"></div>
+                </div>
+                <div class="article-content">
+                    <h3>"My heart blossoms with you."</h3>
+                    <!-- <textarea placeholder="Write about this special moment...">The way you smiled in this moment made me fall in love with you all over again. These are the memories I treasure most.</textarea> -->
+                </div>
+            </div>
+
+            <!-- Photo Section 3 -->
+            <div class="photo-section" id="section3">
+                <div class="photo-container">
+                    <img id="mainPhoto3" class="main-photo" alt="Our Memory 3">
+                    <div class="heart-overlay" id="overlay3"></div>
+                </div>
+                <div class="article-content">
+                    <h3>"Anywhere with you is everywhere I want to be."</h3>
+                    <!-- <textarea placeholder="Write about this special moment...">Being with you feels like home. This photo reminds me of all the reasons why I love you more each day.</textarea> -->
+                </div>
+            </div>
+
+            <!-- Photo Section 4 -->
+            <div class="photo-section reverse" id="section4">
+                <div class="photo-container">
+                    <img id="mainPhoto4" class="main-photo" alt="Our Memory 4">
+                    <div class="heart-overlay" id="overlay4"></div>
+                </div>
+                <div class="article-content">
+                    <h3>"All I need is a little bit of coffee and a whole lot of you."</h3>
+                    <!-- <textarea placeholder="Write about this special moment...">Your laughter is my favorite sound. This moment perfectly captures the joy and happiness we share together.</textarea> -->
+                </div>
+            </div>
+
+            <!-- Photo Section 5 -->
+            <div class="photo-section" id="section5">
+                <div class="photo-container">
+                    <img id="mainPhoto5" class="main-photo" alt="Our Memory 5">
+                    <div class="heart-overlay" id="overlay5"></div>
+                </div>
+                <div class="article-content">
+                    <h3>"Not every photo's perfect, but every moment with you is."</h3>
+                    <!-- <textarea placeholder="Write about this special moment...">Every moment with you is a treasure. Here's to our love story and all the beautiful chapters yet to come.</textarea> -->
+                </div>
+            </div>
+
+            <!-- Photo Section 6 -->
+            <div class="photo-section reverse" id="section6">
+                <div class="photo-container">
+                    <img id="mainPhoto6" class="main-photo" alt="Our Memory 6">
+                    <div class="heart-overlay" id="overlay6"></div>
+                </div>
+                <div class="article-content">
+                    <h3>"You're the one I want to annoy for the rest of my life."</h3>
+                    <!-- <textarea placeholder="Write about this special moment...">Every moment with you is a treasure. Here's to our love story and all the beautiful chapters yet to come.</textarea> -->
+                </div>
+            </div>
+
+            <!-- Photo Section 7 -->
+            <div class="photo-section" id="section7">
+                <div class="photo-container">
+                    <img id="mainPhoto7" class="main-photo" alt="Our Memory 7">
+                    <div class="heart-overlay" id="overlay7"></div>
+                </div>
+                <div class="article-content">
+                    <h3>“If I know what love is, it is because of you.”</h3>
+                    <!-- <textarea placeholder="Write about this special moment...">Every moment with you is a treasure. Here's to our love story and all the beautiful chapters yet to come.</textarea> -->
+                </div>
+            </div>
+
+            <!-- Photo Section 8 -->
+            <div class="photo-section reverse" id="section8">
+                <div class="photo-container">
+                    <img id="mainPhoto8" class="main-photo" alt="Our Memory 8">
+                    <div class="heart-overlay" id="overlay8"></div>
+                </div>
+                <div class="article-content">
+                    <h3>"It was love at first sight."</h3>
+                    <!-- <textarea placeholder="Write about this special moment...">Every moment with you is a treasure. Here's to our love story and all the beautiful chapters yet to come.</textarea> -->
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>I Love You</p>
+                <p>With all my love, this Valentine's Day and always 💕</p>
+                <p>O. Stalin ❤️ K. Sokear</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // You can replace these placeholder URLs with your actual photo URLs
+        const photos = [
+            'photo/IMG_7581.PNG', 
+            'photo/IMG_7583.PNG', 
+            'photo/IMG_7584.PNG', 
+            'photo/IMG_7594.JPEG', 
+            'photo/IMG_7586.PNG',
+            'photo/IMG_7588.PNG',
+            'photo/IMG_7590.PNG',
+            'photo/IMG_7593.PNG'
+        ];
+
+        // Check if current date is Valentine's Day (February 14th at 00:00 or later)
+        function isValentinesDay() {
+            const now = new Date();
+            const valentinesDay = new Date(now.getFullYear(), 1, 14, 0, 0, 0); // February 14th, 00:00
+            
+            // Check if current date is on or after Valentine's Day 00:00 AM
+            return now >= valentinesDay && now.getMonth() === 1 && now.getDate() === 14;
+        //    return true;
+        }
+
+        // Calculate time until Valentine's Day
+        function getTimeUntilValentines() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            let valentinesDay = new Date(currentYear, 1, 14, 0, 0, 0); // February 14th, 00:00
+            
+            // If Valentine's Day has passed this year, target next year
+            if (now > valentinesDay) {
+                valentinesDay = new Date(currentYear + 1, 1, 14, 0, 0, 0);
+            }
+            // change 12 to 14 4places
+            const diff = valentinesDay - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            return { days, hours, minutes, seconds, total: diff };
+        }
+
+        // Update countdown display
+        function updateCountdown() {
+            const heartButton = document.getElementById('heartButton');
+            const countdownText = document.getElementById('countdownText');
+            const lockedMessage = document.getElementById('lockedMessage');
+            
+            if (isValentinesDay()) {
+                // It's Valentine's Day! Unlock the heart
+                heartButton.classList.remove('locked');
+                countdownText.innerHTML = '✨ Click the heart! ✨';
+                lockedMessage.innerHTML = '';
+            } else {
+                // Lock the heart and show countdown
+                heartButton.classList.add('locked');
+                const time = getTimeUntilValentines();
+                
+                countdownText.innerHTML = `${time.days} days, ${time.hours} hours, ${time.minutes} minutes, ${time.seconds} seconds`;
+                lockedMessage.innerHTML = '';
+            }
+        }
+
+        // Attempt to enter the main page
+        function attemptEnter() {
+            if (isValentinesDay()) {
+                enterMainPage();
+            } else {
+                // Shake animation for locked heart
+                const heartButton = document.getElementById('heartButton');
+                heartButton.style.animation = 'shake 0.5s ease';
+                setTimeout(() => {
+                    heartButton.style.animation = '';
+                }, 500);
+            }
+        }
+
+        function enterMainPage() {
+            const heartButton = document.querySelector('.heart-button');
+            const landingPage = document.getElementById('landingPage');
+            const mainContent = document.getElementById('mainContent');
+            
+            // Animate heart button
+            heartButton.classList.add('clicked');
+            
+            // Wait for heart animation to complete
+            setTimeout(() => {
+                // Fade out landing page
+                landingPage.classList.add('fade-out');
+                
+                // After landing page fades
+                setTimeout(() => {
+                    landingPage.style.display = 'none';
+                    
+                    // Show main content with reveal animation
+                    mainContent.classList.add('active', 'reveal');
+                    
+                    // Load photos into main sections
+                    for (let i = 0; i < 8; i++) {
+                        const mainPhoto = document.getElementById(`mainPhoto${i + 1}`);
+                        mainPhoto.src = photos[i];
+                        
+                        // Generate heart stickers for each photo with delay
+                        // setTimeout(() => {
+                        //     generateHearts(i + 1);
+                        // }, 500 + (i * 200));
+                    }
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                }, 1500);
+            }, 500);
+        }
+
+        // function generateHearts(sectionNum) {
+        //     const overlay = document.getElementById(`overlay${sectionNum}`);
+        //     const heartsCount = 15; // Number of hearts per photo
+            
+        //     for (let i = 0; i < heartsCount; i++) {
+        //         const heart = document.createElement('div');
+        //         heart.className = 'heart-sticker';
+        //         heart.innerHTML = '❤️';
+        //         heart.style.left = `${Math.random() * 90}%`;
+        //         heart.style.top = `${Math.random() * 90}%`;
+        //         heart.style.animationDelay = `${Math.random() * 1.5}s`;
+                
+        //         heart.addEventListener('click', function(e) {
+        //             e.stopPropagation();
+        //             this.classList.add('clicked');
+                    
+        //             setTimeout(() => {
+        //                 this.remove();
+                        
+        //                 // Check if all hearts are removed
+        //                 const remainingHearts = overlay.querySelectorAll('.heart-sticker').length;
+        //                 if (remainingHearts === 0) {
+        //                     revealPhoto(sectionNum);
+        //                 }
+        //             }, 500);
+        //         });
+                
+        //         overlay.appendChild(heart);
+        //     }
+        // }
+
+        function revealPhoto(sectionNum) {
+            const photo = document.getElementById(`mainPhoto${sectionNum}`);
+            const overlay = document.getElementById(`overlay${sectionNum}`);
+            
+            photo.classList.add('revealed');
+            overlay.style.display = 'none';
+        }
+
+        // Intersection Observer to animate sections on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize countdown
+            updateCountdown();
+            // Update countdown every second
+            setInterval(updateCountdown, 1000);
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            // Observe all photo sections
+            setTimeout(() => {
+                const sections = document.querySelectorAll('.photo-section');
+                sections.forEach(section => observer.observe(section));
+            }, 100);
+        });
+    </script>
+</body>
+</html>
